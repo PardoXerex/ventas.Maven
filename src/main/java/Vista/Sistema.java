@@ -2500,6 +2500,7 @@ public final class Sistema extends javax.swing.JFrame {
         btnEditarCliente.setEnabled(false);
         btnEliminarCliente.setEnabled(false);
         btnGuardarCliente.setEnabled(true);
+        btnNuevoCliente.setEnabled(true);
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
 
     private void txtIdVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdVentaActionPerformed
