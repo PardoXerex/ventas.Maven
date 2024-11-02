@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.sql.Connection;
@@ -9,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompraDao {
+
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     int r;
     
-    public int IdCompra(){
-        int id=0;
+    public int IdCompra() {
+        int id = 0;
         String sql = "SELECT MAX(id) FROM compras";
         try {
             con = cn.getConnection();
@@ -30,8 +30,8 @@ public class CompraDao {
         }
         return id;
     }
-    
-    public void RegistrarCompra(Compra c){
+
+    public void RegistrarCompra(Compra c) {
         String sql = "INSERT INTO compras (id, cuit, total, fecha) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -43,7 +43,7 @@ public class CompraDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -51,8 +51,8 @@ public class CompraDao {
             }
         }
     }
-    
-    public void RegistrarDetalleCompra(DetalleCompras dc){
+
+    public void RegistrarDetalleCompra(DetalleCompras dc) {
         String sql = "INSERT INTO detallecompras (id_prod, cantidad, costo, id_compra) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
@@ -64,7 +64,7 @@ public class CompraDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -72,28 +72,28 @@ public class CompraDao {
             }
         }
     }
-    
-    public List ListarCompras(){
+
+    public List ListarCompras() {
         List<Compra> ListaCompra = new ArrayList();
-       String sql = "SELECT proveedor.id AS id_prov, proveedor.nombre, compras.* FROM proveedor INNER JOIN compras ON proveedor.id = compras.cuit";
-       try {
-           con = cn.getConnection();
-           ps = con.prepareStatement(sql);
-           rs = ps.executeQuery();
-           while (rs.next()) {               
-               Compra sale = new Compra();
-               sale.setId(rs.getInt("id"));
-               sale.setNombreProv(rs.getString("nombre"));
-               sale.setTotal(rs.getDouble("total"));
-               ListaCompra.add(sale);
-           }
-       } catch (SQLException e) {
-           System.out.println(e.toString());
-       }
-       return ListaCompra;
+        String sql = "SELECT proveedor.id AS id_prov, proveedor.nombre, compras.* FROM proveedor INNER JOIN compras ON proveedor.id = compras.cuit";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Compra sale = new Compra();
+                sale.setId(rs.getInt("id"));
+                sale.setNombreProv(rs.getString("nombre"));
+                sale.setTotal(rs.getDouble("total"));
+                ListaCompra.add(sale);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return ListaCompra;
     }
-    
-    public Compra BuscarCompra(int id){
+
+    public Compra BuscarCompra(int id) {
         Compra c = new Compra();
         String sql = "SELECT * FROM compras WHERE id = ?";
         try {

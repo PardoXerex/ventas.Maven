@@ -47,11 +47,6 @@
             <version>1.0.24</version>
         </dependency>
         <dependency>
-            <groupId>jasperReport.JavaFlow</groupId>
-            <artifactId>jasperReportJF</artifactId>
-            <version>4.7.1</version>
-        </dependency>
-        <dependency>
             <groupId>jasperReport</groupId>
             <artifactId>jasperReports</artifactId>
             <version>4.7.1</version>

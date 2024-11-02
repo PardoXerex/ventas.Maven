@@ -34,15 +34,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -621,9 +617,6 @@ public final class Sistema extends javax.swing.JFrame {
         txtDescripcionVenta.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcionVenta.setBorder(null);
         txtDescripcionVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDescripcionVentaKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescripcionVentaKeyTyped(evt);
             }
@@ -1306,16 +1299,6 @@ public final class Sistema extends javax.swing.JFrame {
 
         cbxProveedorPro.setBackground(new java.awt.Color(204, 204, 204));
         cbxProveedorPro.setBorder(null);
-        cbxProveedorPro.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxProveedorProItemStateChanged(evt);
-            }
-        });
-        cbxProveedorPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxProveedorProActionPerformed(evt);
-            }
-        });
         jPanel11.add(cbxProveedorPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 130, 30));
 
         btnGuardarpro.setIcon(new javax.swing.ImageIcon("C:\\Apache NetBeansProjects\\SistemaVentaMaven\\src\\main\\java\\Img\\GuardarTodo.png")); // NOI18N
@@ -1483,12 +1466,6 @@ public final class Sistema extends javax.swing.JFrame {
             }
         });
         historialVentas.add(btnPdfVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        txtIdVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdVentaActionPerformed(evt);
-            }
-        });
         historialVentas.add(txtIdVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 46, -1));
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -1639,11 +1616,6 @@ public final class Sistema extends javax.swing.JFrame {
 
         txtCorreo.setBackground(new java.awt.Color(204, 204, 204));
         txtCorreo.setBorder(null);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
         jPanel13.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 126, 226, 30));
 
         txtPass.setBackground(new java.awt.Color(204, 204, 204));
@@ -2016,10 +1988,6 @@ public final class Sistema extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void btnActualizarConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarConfigActionPerformed
         // TODO add your handling code here:
         if (!"".equals(txtNombreConfig.getText()) || !"".equals(txtTelefonoConfig.getText()) || !"".equals(txtDireccionConfig.getText())) {
@@ -2045,7 +2013,7 @@ public final class Sistema extends javax.swing.JFrame {
             String direccion = "C:\\Apache NetBeansProjects\\SistemaVentaMaven\\src\\main\\java\\Vista\\InformeVentas.jrxml";
             JasperReport reporte = JasperCompileManager.compileReport(direccion);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporte, parametros, cn);
-            JasperViewer.viewReport(mostrarReporte);
+            JasperViewer.viewReport(mostrarReporte,false);
 
         } catch (JRException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
@@ -2085,22 +2053,6 @@ public final class Sistema extends javax.swing.JFrame {
             Notification panel = new Notification(this, Notification.Type.INFO, Notification.Location.CENTER, "Debe seleccionar una fila.");
             panel.showNotification();
         }
-
-//        if (!"".equals(txtIdproducto.getText())) {
-//            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
-//            if (pregunta == 0) {
-//                int id = Integer.parseInt(txtIdproducto.getText());
-//                proDao.EliminarProductos(id);
-//                LimpiarTable();
-//                LimpiarProductos();
-//                ListarProductos();
-//                btnEditarpro.setEnabled(false);
-//                btnEliminarPro.setEnabled(false);
-//                btnGuardarpro.setEnabled(true);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Selecciona una fila");
-//        }
     }//GEN-LAST:event_btnEliminarProActionPerformed
 
     private void btnEditarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarproActionPerformed
@@ -2153,14 +2105,6 @@ public final class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los campos estan vacios");
         }
     }//GEN-LAST:event_btnGuardarproActionPerformed
-
-    private void cbxProveedorProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProveedorProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxProveedorProActionPerformed
-
-    private void cbxProveedorProItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProveedorProItemStateChanged
-
-    }//GEN-LAST:event_cbxProveedorProItemStateChanged
 
     private void txtPrecioProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProKeyTyped
         // TODO add your handling code here:
@@ -2300,6 +2244,7 @@ public final class Sistema extends javax.swing.JFrame {
 
     private void txtRucVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucVentaKeyTyped
         // TODO add your handling code here:
+        event.numberKeyPress(evt);
     }//GEN-LAST:event_txtRucVentaKeyTyped
 
     private void txtRucVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucVentaKeyPressed
@@ -2413,6 +2358,7 @@ public final class Sistema extends javax.swing.JFrame {
 
     private void txtDniClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniClienteKeyTyped
         // TODO add your handling code here:
+        event.numberKeyPress(evt);
     }//GEN-LAST:event_txtDniClienteKeyTyped
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
@@ -2435,16 +2381,6 @@ public final class Sistema extends javax.swing.JFrame {
             Notification panel = new Notification(this, Notification.Type.INFO, Notification.Location.CENTER, "Debe seleccionar una fila.");
             panel.showNotification();
         }
-//        if (!"".equals(txtIdCliente.getText())) {
-//            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
-//            if (pregunta == 0) {
-//                int id = Integer.parseInt(txtIdCliente.getText());
-//                client.EliminarCliente(id);
-//                LimpiarTable();
-//                LimpiarCliente();
-//                ListarCliente();
-//            }
-//        }
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
@@ -2502,14 +2438,6 @@ public final class Sistema extends javax.swing.JFrame {
         btnGuardarCliente.setEnabled(true);
         btnNuevoCliente.setEnabled(true);
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
-
-    private void txtIdVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdVentaActionPerformed
-
-    private void txtDescripcionVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionVentaKeyPressed
-
-    }//GEN-LAST:event_txtDescripcionVentaKeyPressed
 
     private void bttCompraProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCompraProductosActionPerformed
         jTabbedPane1.setSelectedIndex(7);
@@ -2913,10 +2841,10 @@ public final class Sistema extends javax.swing.JFrame {
             int codigo = Integer.parseInt(TableCompras.getValueAt(i, 0).toString());
             int cant = Integer.parseInt(TableCompras.getValueAt(i, 2).toString());
             double precio = Double.parseDouble(TableCompras.getValueAt(i, 3).toString());
-            Dc.setId_compra(id);
             Dc.setId_pro(codigo);
             Dc.setCantidad(cant);
             Dc.setCosto(precio);
+            Dc.setId_compra(id);
             Cdao.RegistrarDetalleCompra(Dc);
         }
     }
@@ -2934,7 +2862,6 @@ public final class Sistema extends javax.swing.JFrame {
             Vdao.RegistrarDetalle(Dv);
 
         }
-        //int cliente = Integer.parseInt(txtIdCV.getText());
         try {
             Conexion conn = new Conexion();
             Connection cn = conn.getConnection();
@@ -2947,16 +2874,12 @@ public final class Sistema extends javax.swing.JFrame {
             String direccion = "C:\\Apache NetBeansProjects\\SistemaVentaMaven\\src\\main\\java\\Vista\\FacturaVenta.jrxml";
             JasperReport reporte = JasperCompileManager.compileReport(direccion);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(reporte, parametros, cn);
-            JasperViewer.viewReport(mostrarReporte);
-//            try {
-//                cn.close();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            JasperViewer.viewReport(mostrarReporte,false);
+
         } catch (JRException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Vdao.pdfV(id, cliente, Totalpagar, LabelVendedor.getText());
+        
     }
 
     private void ActualizarStock() {
