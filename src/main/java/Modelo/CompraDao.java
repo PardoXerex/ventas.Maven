@@ -60,7 +60,7 @@ public class CompraDao {
             ps.setInt(1, dc.getId_pro());
             ps.setInt(2, dc.getCantidad());
             ps.setDouble(3, dc.getCosto());
-            ps.setInt(4, dc.getId());
+            ps.setInt(4, dc.getId_compra());
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
