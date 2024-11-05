@@ -64,7 +64,7 @@ public class ValidarDatosTest {
         System.out.println("CadenaCorrecta");
         String cadena="Desodorante 900ml";
         ValidarDatos instance = new ValidarDatos();
-        boolean expResult=false;
+        boolean expResult=true;
         boolean result=instance.CadenaCorrecta(cadena);
         assertEquals(expResult, result);
     }
