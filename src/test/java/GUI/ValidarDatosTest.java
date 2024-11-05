@@ -43,4 +43,30 @@ public class ValidarDatosTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Test of DNICorrecto method, of class ValidarDatos.
+     */
+    @org.junit.jupiter.api.Test
+    public void testDNICorrecto(){
+        System.out.println("DNICorrecto");
+        int doc = 12345678;
+        ValidarDatos instance = new ValidarDatos();
+        boolean expResult=true;
+        boolean result=instance.DNICorrecto(doc);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of CadenaCorrecta method, of class ValidarDatos.
+     */
+    @org.junit.jupiter.api.Test
+    public void testCadenaCorrecta(){
+        System.out.println("CadenaCorrecta");
+        String cadena="Desodorante 900ml";
+        ValidarDatos instance = new ValidarDatos();
+        boolean expResult=false;
+        boolean result=instance.CadenaCorrecta(cadena);
+        assertEquals(expResult, result);
+    }
+    
 }
